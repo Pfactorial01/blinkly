@@ -3,8 +3,8 @@
 import { useForm } from "react-hook-form"
 import { useState, useTransition } from "react";
 import { encodeUrl } from "@blinkly/services/urls";
-import { encode } from "punycode";
 
+export const dynamic = "force-dynamic";
 export default function Home() {
   const [isPending, startTransition] = useTransition();
   const [shortenedLink, setShortenedLink] = useState<string>("")
@@ -17,9 +17,11 @@ export default function Home() {
   const onSubmit = ({url}: {url: string}) => {
     startTransition(async () => {
       const response = await encodeUrl({url})
-      if (response.message === "success") {
-        setShortenedLink(response.data)
+      if (response.message === "error") {
+        console.log(response)
       }
+      const {data: { shortenedUrl }} = response
+      setShortenedLink(shortenedUrl)
     });
   }
   return (
@@ -38,8 +40,13 @@ export default function Home() {
         })}
           />
         {errors.url && <p>{errors.url.message}</p>}
-        <button type="submit">Shorten Link</button>
+        <button type="submit">{isPending ? "Loading.." : "Shorten Link"}</button>
       </form>
+      {shortenedLink && 
+        <div>
+          Here is your shortenedLink: {shortenedLink}
+        </div>
+      }
     </div>
   )
 }

@@ -7,8 +7,8 @@ export const encodeUrl = async ({url}: {url: string}) => {
         body: JSON.stringify(url)
     });
     const result = await response.json()
-    return {
-        message: "success",
-        data: result
+    if (response.status !== 200) {
+        return { message: "error", data: result }
     }
+    return { message: "success", data: result }
 }
