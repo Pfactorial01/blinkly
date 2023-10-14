@@ -19,7 +19,7 @@
       }
     ],
     "paths": {
-      "@/*blinkly": ["./src/*"]
+      "@blinkly/*": ["./src/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
