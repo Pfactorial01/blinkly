@@ -17,7 +17,6 @@ export async function POST(request: NextRequest) {
     const result = {
       shortenedUrl: `http:localhost:3000/${shortcode}`
     }
-    console.log(db)
     return new NextResponse(JSON.stringify(result), { status: 200 });
   } catch (e) {
     console.error(e);
