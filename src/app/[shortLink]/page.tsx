@@ -1,6 +1,5 @@
 import { decodeUrl } from "@blinkly/services/urls";
-import { notFound } from "next/navigation";
-import { RedirectClientPage } from "./redirect";
+import { notFound, permanentRedirect } from "next/navigation";
 
 export default async function RedirectPage(props: {params: {shortLink: string;}}) {
     const { params: {shortLink}} = props;
@@ -12,5 +11,5 @@ export default async function RedirectPage(props: {params: {shortLink: string;}}
     if (!longUrl.includes('http')) {
       longUrl = `http://${longUrl}`
     }
-    return (<RedirectClientPage url={longUrl}/>)
+    return permanentRedirect(longUrl)
 }

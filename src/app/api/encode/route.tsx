@@ -6,7 +6,7 @@ export async function POST(request: NextRequest) {
   try {
     const db = InMemoryDatabase.getInstance()
     const url = await request.json()
-    const shortcode = generateShortUrl({url})
+    const shortcode = generateShortUrl()
     db.set(
       shortcode, {
         longUrl: url,
