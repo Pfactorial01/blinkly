@@ -11,7 +11,7 @@ function biject(n: number) {
     return shortcode.split("").reverse().join("");
   }
 
-export const generateShortUrl = ({url}: {url: string}) => {
+export const generateShortUrl = () => {
     const id = Math.random().toString(36).substring(7);
     const shortcode = biject(parseInt(id, 36));
     return shortcode;
