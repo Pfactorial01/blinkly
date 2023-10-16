@@ -29,7 +29,7 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col gap-5 md:gap-8 items-center justify-center bg-teal-700 rounded-md md:rounded-3xl shadow-2xl p-3 md:py-20">
+    <div className="flex flex-col gap-5 md:gap-8 items-center justify-center bg-teal-700 md:h-[700px] rounded-md md:rounded-3xl shadow-2xl p-3 md:py-20">
       <h1 className="text-4xl md:text-9xl font-extrabold">Blinkly</h1>
       <form className="flex flex-col items-center justify-center gap-5 md:gap-8" onSubmit={handleSubmit(onSubmit)}>
         <input
@@ -52,12 +52,12 @@ export default function Home() {
           >{isPending ? "Loading.." : "Shorten Link"}
         </button>
       </form>
-      {isPending===false && shortenedLink && 
-        <div className="flex flex-col">
+      {shortenedLink && 
+        <div className="flex flex-col justify-center items-center">
           <div className="flex flex-row md:mr-3 p-1">
-            <h1>Here is your shortened link:</h1>
+            <h1 className="font-extrabold text-xl">Here is your shortened link:</h1>
           </div>
-           <div className="bg-white rounded-sm flex items-center justify-center">
+           <div className="bg-white rounded-sm flex items-center justify-center p-2">
               <h1 className="mr-3">{shortenedLink}</h1>
               <CopyToClipboard
                 text={shortenedLink}
