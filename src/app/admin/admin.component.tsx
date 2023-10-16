@@ -23,14 +23,18 @@ export function AdminComponent({links, numPages, page}: {links:linksList, numPag
             <h1 className="text-2xl">Existing Endpoints</h1>
             {links.length > 0 ? links.map((linkData, index) => {
                 const shortLink = `http://localhost:3000/${linkData[0]}`
-                const longLink = linkData[1].longUrl
+                let longLink = linkData[1].longUrl
+                let absoluteLink = longLink
+                if (!longLink.includes('http')) {
+                  absoluteLink = `http://${longLink}`
+                }
                 const createdAt = new Date(linkData[1].createdAt)
                 const visited = linkData[1].visited
                 return (
                 <div key={index} className="mx-2 flex flex-col md:flex-row gap-2 md:mx-80 rounded-md py-1 px-3 w-80 md:w-[700px]  border-[2px] border-slate-950">
                     <div>
                         <h1>Shortened Link: <Link href={shortLink}>{shortLink}</Link></h1>
-                        <h1>Long Link: <Link href={longLink}>{longLink.substring(0,25)}</Link></h1>
+                        <h1>Long Link: <Link href={absoluteLink}>{longLink.substring(0,25)}</Link></h1>
                     </div>
                     <div>
                         <h1>Created At: {`${createdAt.toLocaleDateString()}, ${createdAt.toLocaleTimeString()}`}</h1>
