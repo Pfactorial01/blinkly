@@ -6,7 +6,7 @@ export const encodeUrl = async ({url}: {url: string}) => {
     const response = await fetch(`${baseUrl}/encode`, {
         method: 'POST',
         cache: 'no-store',
-        body: JSON.stringify(url)
+        body: JSON.stringify({url})
     });
     const result = await response.json()
     if (response.status !== 200) {
