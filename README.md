@@ -2,6 +2,10 @@
 
 ## To run this application
 - Clone the repo locally
+- Install dependencies using
+  ```bash
+  npm install
+  ```
 - Then build a distribution using
   ```bash
   npm run build
